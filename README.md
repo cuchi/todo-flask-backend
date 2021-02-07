@@ -16,3 +16,14 @@ poetry install
 ```
 
 Finally, you can access it with the `poetry shell` command.
+
+## What's inside?
+
+This project is built using:
+- Flask - web framework
+- PostgreSQL - relational database
+- SQLAlchemy - ORM
+- Alembic - database migrations
+- PyTest - unit & integration testing
+- Poetry - package management
+- docker-compose - local environment services

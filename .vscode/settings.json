@@ -1,3 +1,13 @@
 {
-    "python.pythonPath": ".venv/bin/python3.9"
+    "python.pythonPath": ".venv/bin/python3.9",
+    "python.formatting.provider": "black",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "[python]": {
+        "editor.rulers": [90]
+    }
 }

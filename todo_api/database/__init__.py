@@ -1,9 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from todo_api import app
+from todo_api.config import DATABASE_URL
 
-engine_url = "postgresql://postgres:postgres@localhost:5432/postgres"
-app.config["SQLALCHEMY_DATABASE_URI"] = engine_url
+app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
-Base = db.Model
+Model = db.Model
