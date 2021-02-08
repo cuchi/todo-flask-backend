@@ -16,8 +16,7 @@ config = context.config
 fileConfig(config.config_file_name)
 
 sys.path = ["", ".."] + sys.path[1:]
-from todo_api.database import Model, db
-from todo_api.config import DATABASE_URL
+from todo_api.database import Model
 
 target_metadata = Model.metadata
 
@@ -39,8 +38,9 @@ def run_migrations_offline():
     script output.
 
     """
+    url = config.get_main_option("sqlalchemy.url")
     context.configure(
-        url=DATABASE_URL,
+        url=url,
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
@@ -57,7 +57,13 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    with db.engine.connect() as connection:
+    connectable = engine_from_config(
+        config.get_section(config.config_ini_section),
+        prefix="sqlalchemy.",
+        poolclass=pool.NullPool,
+    )
+
+    with connectable.connect() as connection:
         context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
