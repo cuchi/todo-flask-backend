@@ -18,7 +18,9 @@ class TodoService:
             query |= Todo.name.contains(name)
         if late is not None:
             now = func.now()
-            query |= Todo.due_at < now if late else Todo.due_at > now
+            query |= (
+                Todo.due_at <= now if late else Todo.due_at > now or Todo.due_at is None
+            )
 
         return Todo.query.filter(query).all()
 

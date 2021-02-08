@@ -1,5 +1,4 @@
 from uuid import UUID
-from sqlalchemy import func
 from todo_api.todo.service import TodoService
 
 service = TodoService()
