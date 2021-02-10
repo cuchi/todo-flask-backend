@@ -25,7 +25,9 @@ jobs:
         run: docker-compose up -d
       
       - name: Install dependencies
-        run: poetry install
+        run: |
+          poetry config virtualenvs.create false
+          poetry install
         
       - name: Run Black
         run: black .
